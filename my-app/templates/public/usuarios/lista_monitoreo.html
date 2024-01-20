@@ -1,0 +1,182 @@
+{% extends 'public/base_cpanel.html' %}
+<!--Cambiando el title-->
+{% block title %}Crud con Python 🐍 | Monitoreos del Data Base{% endblock %}
+<!--Inicio del block-->
+{% block body %}
+
+<div class="card" style="border-radius: 0px !important">
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-12 mb-4">
+      <h3 class="text-center mt-5 mb-3">MONITOREOS DEL DATA BASE</h3>
+      <hr />
+    </div>
+    <!--CAMPO PARA CREAR AREAS-->
+    <div class="container" id="formCrear">
+        <form action="/crear-monitoreo" method="POST">
+          <div class="contenedor">
+            <label class="form-label"> Crear Monitoreo </label>
+            
+            <!-- Campo para el Nombre del Monitoreo -->
+            <div class="campo_clave">
+              <input type="text" name="nombre_monitoreo" id="nombreSeleccionado" class="form-control"
+                placeholder="Nombre del Monitoreo" />
+            </div>
+            
+            <!-- Campo para la Fecha del Monitoreo -->
+            <label class="form-label"> Fecha </label>
+            <div class="campo_clave">
+              <input type="date" name="fecha" class="form-control"
+                placeholder="Fecha del Monitoreo" />
+            </div>
+            
+            <!-- Campo para la Hora del Monitoreo -->
+            <label class="form-label"> Hora </label>
+            <div class="campo_clave">
+              <input type="time" name="hora" class="form-control"
+                placeholder="Hora del Monitoreo" />
+            </div>    
+            
+            <!-- Campo para la Ubicación del Monitoreo -->
+            <div class="row">
+                <div class="mt-3 col-md-6">
+                  <label for="" class="form-label">Área</label>
+                  <select class="form-select" name="selectArea" {%if dataLogin.rol == 2 %} disabled {%endif%}>
+                    {% for area in areas%}
+                    <option value="{{area.id_area}}">{{area.nombre_area}}</option>
+                    {%endfor%}
+                  </select>
+                </div>
+            </div>
+
+            <!-- Campo para la Descripción del Monitoreo -->
+            <label class="form-label"> Descripción </label>
+            <div class="campo_clave">
+              <input type="text" name="descripcion" class="form-control"
+                placeholder="Descripción del Monitoreo" />
+            </div>
+            
+            <!-- Botones del formulario -->
+            <div class="botones mt-3">
+              <button id="botonGuardar" class="btn btn-outline-primary btn-sm" type="submit">
+                <!-- Cambia el tipo de botón a 'submit' para enviar el formulario -->
+                Crear
+              </button>
+            </div>
+            
+          </div>
+        </form>
+      </div>
+      
+    
+
+    <div class="container" id="formActualizar" style="display: none;">
+      <form action="{{ url_for('updateArea') }}" method="POST">
+        <div class="contenedor">
+          <label class="form-label">Actualizar Área</label>
+          <input class="form-control" name="nombre_area" id="inputArea">
+          <input name="id_area" hidden id="inputId"> 
+        </div>
+        <div class="mt-3">
+          <button id="botonGuardar" class="btn btn-outline-primary btn-sm" type="submit">
+            <!-- Cambia el tipo de botón a 'submit' para enviar el formulario -->
+            Actualizar
+          </button>
+          <button class="btn btn-outline-danger btn-sm" onclick="ocultarForm()" type="button">
+            <!-- Cambia el tipo de botón a 'submit' para enviar el formulario -->
+            Cancelar
+          </button>
+        </div>
+        
+      </form>
+    </div>
+
+
+
+
+
+    <div class="row justify-content-end">
+      <div class="col-md-6 mt-4 py-2">
+        <input type="search" id="search" class="form-control border-0 shadow-none" placeholder="Buscar área..."
+          onkeyup="buscadorTable('tbl_areas')" />
+      </div>
+    </div>
+
+    <div class="row justify-content-center mb-2">
+      <div class="table-responsive text-nowrap table-hover">
+        <table table-hover id="tbl_areas" class="table table-striped table-bordered" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Area</th>
+              <th>Descripción</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for monitoreo in monitoreo %}
+            <tr id="{{ monitoreo.id_monitoreo }}">
+              <td>{{ monitoreo.id_monitoreo }}</td>
+              <td>{{ monitoreo.nombre_monitoreo }}</td>
+              <td>{{ monitoreo.fecha }}</td>
+              
+              <td>{{ monitoreo.hora }}</td>
+              <td>
+                {%for area in areas%}
+                {%if area.id_area == monitoreo.id_area%}
+                {{area.nombre_area}}
+                {%endif%}
+                {%endfor%}
+              </td>
+              <td>{{ monitoreo.descripcion }}</td>
+
+
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %} {% block customJS %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+  function ocultarForm(nombre_area) {
+    var x = document.getElementById("formActualizar");
+    var y = document.getElementById("formCrear");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+      y.style.display = "none"
+    } else {
+      x.style.display = "none";
+      y.style.display = "block"
+    }
+
+  }
+
+  function editar(nombre_area, id_area) {
+    var formEditar = document.getElementById("formActualizar")
+    var formCrear = document.getElementById("formCrear");
+    var area = document.getElementById("inputArea")
+    var id = document.getElementById("inputId")
+
+    if(formEditar.style.display === "none"){
+      formEditar.style.display = "block";
+      area.value = nombre_area
+      id.value = id_area
+      formCrear.style.display = "none"
+    } else {
+      area.value = nombre_area
+      id.value = id_area
+    }
+    
+  }
+
+</script>
+
+{% endblock %}
