@@ -108,7 +108,8 @@ def buscarAreaBD(search):
                 querySQL = ("""
                         SELECT 
                             a.id_area,
-                            a.nombre_area
+                            a.nombre_area,
+                            a.encargado
                         FROM area AS a
                         WHERE a.nombre_area LIKE %s 
                         ORDER BY a.id_area DESC
@@ -128,7 +129,7 @@ def lista_usuariosBD():
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "SELECT id_usuario, cedula, nombre_usuario, apellido_usuario, id_area, id_rol, id_dispositivo FROM usuarios"
+                querySQL = "SELECT id_usuario, cedula, nombre_usuario, apellido_usuario, id_area, id_rol,estado_civil FROM usuarios"
                 cursor.execute(querySQL,)
                 usuariosBD = cursor.fetchall()
         return usuariosBD
@@ -140,7 +141,7 @@ def lista_areasBD():
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "SELECT id_area, nombre_area FROM area"
+                querySQL = "SELECT id_area, nombre_area, encargado FROM area"
                 cursor.execute(querySQL,)
                 areasBD = cursor.fetchall()
         return areasBD
@@ -279,12 +280,12 @@ def lista_rolesBD():
         print(f"Error en select roles : {e}")
         return []
 ##CREAR AREA
-def guardarArea(area_name):
+def guardarArea(area_name, encargado):
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as mycursor:
-                    sql = "INSERT INTO area (nombre_area) VALUES (%s)"
-                    valores = (area_name,)
+                    sql = "INSERT INTO area (nombre_area, encargado) VALUES (%s,%s)"
+                    valores = (area_name,encargado)
                     mycursor.execute(sql, valores)
                     conexion_MySQLdb.commit()
                     resultado_insert = mycursor.rowcount
@@ -294,12 +295,12 @@ def guardarArea(area_name):
         return f'Se produjo un error en crear Area: {str(e)}' 
     
 ##ACTUALIZAR AREA
-def actualizarArea(area_id, area_name):
+def actualizarArea(area_id, area_name, encargado):
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as mycursor:
-                sql = """UPDATE area SET nombre_area = %s WHERE id_area = %s"""
-                valores = (area_name, area_id)
+                sql = """UPDATE area SET nombre_area = %s, encargado = %s WHERE id_area = %s"""
+                valores = (area_name,encargado, area_id)
                 mycursor.execute(sql, valores)
                 conexion_MySQLdb.commit()
                 resultado_update = mycursor.rowcount

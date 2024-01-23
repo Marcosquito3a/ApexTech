@@ -7,18 +7,26 @@
 <div class="card" style="border-radius: 0px !important">
   <div class="row justify-content-center mb-2">
     <div class="col-md-12 mb-4">
-      <h3 class="text-center mt-5 mb-3">ÁREAS DEL DATA BASE</h3>
+      <h3 class="text-center mt-5 mb-3">DEPARTAMENTOS DEL DATA BASE</h3>
       <hr />
     </div>
     <!--CAMPO PARA CREAR AREAS-->
     <div class="container" id="formCrear">
       <form action="/crear-area" method="POST">
         <div class="contenedor">
-          <label class="form-label"> Crear Área </label>
+          <label class="form-label"> Crear Departamento </label>
           <div class="campo_clave">
             <!-- Asegúrate de que el atributo name coincida con el nombre del campo en la función de Flask -->
             <input type="text" name="nombre_area" id="nombreSeleccionado" class="form-control"
-              placeholder="Nombre seleccionado" />
+              placeholder="Nombre del Departamento" />
+
+          <label class="form-label"> Encargado </label>
+              <!-- Campo para el Nombre del Monitoreo -->
+          <div class="campo_clave">
+            <input type="text" name="encargado" class="form-control"
+              placeholder="Nombre del Encargado" />
+              </div>
+
             <div class="botones mt-3">
               <button id="botonGuardar" class="btn btn-outline-primary btn-sm" type="submit">
                 <!-- Cambia el tipo de botón a 'submit' para enviar el formulario -->
@@ -34,8 +42,9 @@
     <div class="container" id="formActualizar" style="display: none;">
       <form action="{{ url_for('updateArea') }}" method="POST">
         <div class="contenedor">
-          <label class="form-label">Actualizar Área</label>
+          <label class="form-label">Actualizar Departamento</label>
           <input class="form-control" name="nombre_area" id="inputArea">
+          <input class="form-control" name="encargado" id="inputEncargado" placeholder="Nombre del Encargado">
           <input name="id_area" hidden id="inputId"> 
         </div>
         <div class="mt-3">
@@ -68,7 +77,8 @@
           <thead>
             <tr>
               <th>ID</th>
-              <th>Nombre</th>
+              <th>Departamento</th>
+              <th>Encargado</th>
               <th>Acción</th>
             </tr>
           </thead>
@@ -77,9 +87,10 @@
             <tr id="{{ area.id_area }}">
               <td>{{ area.id_area }}</td>
               <td>{{ area.nombre_area }}</td>
+              <td>{{ area.encargado }}</td>
 
               <td width="10px">
-                <a onclick="editar('{{area.nombre_area}}', '{{area.id_area}}')" class="btn btn-success btn-sm" tooltip="Actualizar Registro">
+                <a onclick="editar('{{area.nombre_area}}','{{area.encargado}}', '{{area.id_area}}')" class="btn btn-success btn-sm" tooltip="Actualizar Registro">
                   <i class="bi bi-arrow-clockwise"></i>
                   Actualizar
                 </a>
@@ -116,23 +127,26 @@
 
   }
 
-  function editar(nombre_area, id_area) {
-    var formEditar = document.getElementById("formActualizar")
+  function editar(nombre_area, encargado, id_area) {
+    var formEditar = document.getElementById("formActualizar");
     var formCrear = document.getElementById("formCrear");
-    var area = document.getElementById("inputArea")
-    var id = document.getElementById("inputId")
+    var area = document.getElementById("inputArea");
+    var encargadoInput = document.getElementById("inputEncargado");
+    var id = document.getElementById("inputId");
 
-    if(formEditar.style.display === "none"){
-      formEditar.style.display = "block";
-      area.value = nombre_area
-      id.value = id_area
-      formCrear.style.display = "none"
+    if (formEditar.style.display === "none") {
+        formEditar.style.display = "block";
+        area.value = nombre_area;
+        encargadoInput.value = encargado;  // <-- Corregido el nombre de la variable
+        id.value = id_area;
+        formCrear.style.display = "none";
     } else {
-      area.value = nombre_area
-      id.value = id_area
+        area.value = nombre_area;
+        encargadoInput.value = encargado;
+        id.value = id_area;
     }
-    
-  }
+}
+
 
 </script>
 

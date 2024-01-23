@@ -79,7 +79,8 @@ def generar_clave(id):
 def crearArea():
     if request.method == 'POST':
         area_name = request.form['nombre_area']  # Asumiendo que 'nombre_area' es el nombre del campo en el formulario
-        resultado_insert = guardarArea(area_name)
+        encargado = request.form['encargado']
+        resultado_insert = guardarArea(area_name, encargado)
         if resultado_insert:
             # Éxito al guardar el área
             flash('El Area fue creada correctamente', 'success')
@@ -96,7 +97,8 @@ def updateArea():
     if request.method == 'POST':
         nombre_area = request.form['nombre_area']  # Asumiendo que 'nuevo_nombre' es el nombre del campo en el formulario
         id_area = request.form['id_area']
-        resultado_update = actualizarArea(id_area, nombre_area)
+        encargado = request.form['encargado']
+        resultado_update = actualizarArea(id_area, nombre_area, encargado)
         if resultado_update:
            # Éxito al actualizar el área
             flash('El actualizar fue creada correctamente', 'success')
