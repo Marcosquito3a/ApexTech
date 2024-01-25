@@ -14,11 +14,27 @@ def lista_areas():
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
-
-@app.route('/lista-de-monitoreo', methods=['GET'])
-def lista_monitoreo():
+    
+@app.route('/data-base', methods=['GET'])
+def data_base():
     if 'conectado' in session:
-        return render_template('public/usuarios/lista_monitoreo.html', dataLogin=dataLoginSesion(),areas=lista_areasBD(), monitoreo=lista_monitoreoBD())
+        return render_template('public/usuarios/data_base.html', dataLogin=dataLoginSesion())
+    else:
+        flash('primero debes iniciar sesión.', 'error')
+        return redirect(url_for('inicio'))
+
+@app.route('/sensor-de-humo', methods=['GET'])
+def humos():
+    if 'conectado' in session:
+        return render_template('public/usuarios/sensor_humo.html', humos=sensor_humosBD, dataLogin=dataLoginSesion())
+    else:
+        flash('primero debes iniciar sesión.', 'error')
+        return redirect(url_for('inicio'))
+
+@app.route('/sensor-de-temperatura', methods=['GET'])
+def temperaturas():
+    if 'conectado' in session:
+        return render_template('public/usuarios/sensor_temperatura.html', temperaturas=lista_temperaturasBD, dataLogin=dataLoginSesion())
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))

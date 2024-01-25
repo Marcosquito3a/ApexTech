@@ -148,7 +148,31 @@ def lista_areasBD():
     except Exception as e:
         print(f"Error en lista_areas : {e}")
         return []
+
+def sensor_humosBD():
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
+                querySQL = "SELECT id_humo, fecha, valor FROM humo"
+                cursor.execute(querySQL,)
+                humosBD = cursor.fetchall()
+        return humosBD
+    except Exception as e:
+        print(f"Error en sensor_humo : {e}")
+        return []
     
+def lista_temperaturasBD():
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
+                querySQL = "SELECT id_temperatura, fecha, temperatura FROM temperatura"
+                cursor.execute(querySQL,)
+                temperaturasBD = cursor.fetchall()
+        return temperaturasBD
+    except Exception as e:
+        print(f"Error en lista_temperatura : {e}")
+        return []
+
 def lista_dispositivosBD():
     try:
         with connectionBD() as conexion_MySQLdb:
@@ -160,18 +184,7 @@ def lista_dispositivosBD():
     except Exception as e:
         print(f"Error en lista_dispositivos : {e}")
         return []
-    
-def lista_monitoreoBD():
-    try:
-        with connectionBD() as conexion_MySQLdb:
-            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "SELECT id_monitoreo, fecha, hora, descripcion, id_dispositivo, id_area, id_usuario, nombre_monitoreo FROM monitoreo"
-                cursor.execute(querySQL,)
-                monitoreoBD = cursor.fetchall()
-        return monitoreoBD
-    except Exception as e:
-        print(f"Error en lista_monitoreo : {e}")
-        return []
+
 
 # Eliminar usuario
 def eliminarUsuario(id):
@@ -198,19 +211,6 @@ def eliminarArea(id):
         return resultado_eliminar
     except Exception as e:
         print(f"Error en eliminarArea : {e}")
-        return []
-    
-def eliminarMonitoreo(id):
-    try:
-        with connectionBD() as conexion_MySQLdb:
-            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "DELETE FROM monitoreo WHERE id_monitoreo=%s"
-                cursor.execute(querySQL, (id,))
-                conexion_MySQLdb.commit()
-                resultado_eliminar = cursor.rowcount
-        return resultado_eliminar
-    except Exception as e:
-        print(f"Error en eliminarMonitoreo : {e}")
         return []
     
 def dataReportes():
@@ -308,18 +308,3 @@ def actualizarArea(area_id, area_name, encargado):
         
     except Exception as e:
         return f'Se produjo un error al actualizar el área: {str(e)}'
-
-##CREAR MONITOREO
-def guardarMonitoreo(fecha,hora,descripcion,monitoreo_name):
-    try:
-        with connectionBD() as conexion_MySQLdb:
-            with conexion_MySQLdb.cursor(dictionary=True) as mycursor:
-                    sql = "INSERT INTO monitoreo (fecha, hora, descripcion,  nombre_monitoreo) VALUES (%s,  %s,%s, %s)"
-                    valores = (fecha,hora,descripcion,monitoreo_name,)
-                    mycursor.execute(sql, valores)
-                    conexion_MySQLdb.commit()
-                    resultado_insert = mycursor.rowcount
-                    return resultado_insert 
-        
-    except Exception as e:
-        return f'Se produjo un error en crear Monitoreo: {str(e)}' 
