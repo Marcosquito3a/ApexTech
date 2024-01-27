@@ -26,7 +26,7 @@ def data_base():
 @app.route('/sensor-de-humo', methods=['GET'])
 def humos():
     if 'conectado' in session:
-        return render_template('public/usuarios/sensor_humo.html', humos=sensor_humosBD, dataLogin=dataLoginSesion())
+        return render_template('public/usuarios/sensor_humo.html', humos=sensor_humosBD(), dataLogin=dataLoginSesion())
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
@@ -34,7 +34,7 @@ def humos():
 @app.route('/sensor-de-temperatura', methods=['GET'])
 def temperaturas():
     if 'conectado' in session:
-        return render_template('public/usuarios/sensor_temperatura.html', temperaturas=lista_temperaturasBD, dataLogin=dataLoginSesion())
+        return render_template('public/usuarios/sensor_temperatura.html', temperaturas=lista_temperaturasBD(), dataLogin=dataLoginSesion())
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
@@ -42,7 +42,7 @@ def temperaturas():
 @app.route("/lista-de-usuarios", methods=['GET'])
 def usuarios():
     if 'conectado' in session:
-        return render_template('public/usuarios/lista_usuarios.html',  resp_usuariosBD=lista_usuariosBD(), dataLogin=dataLoginSesion(), areas=lista_areasBD(), dispositivos=lista_dispositivosBD(), roles = lista_rolesBD())
+        return render_template('public/usuarios/lista_usuarios.html',  resp_usuariosBD=lista_usuariosBD(), dataLogin=dataLoginSesion(), areas=lista_areasBD(), roles = lista_rolesBD())
     else:
         return redirect(url_for('inicioCpanel'))
 

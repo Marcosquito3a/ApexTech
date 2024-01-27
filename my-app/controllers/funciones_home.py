@@ -129,7 +129,7 @@ def lista_usuariosBD():
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "SELECT id_usuario, cedula, nombre_usuario, apellido_usuario, id_area, id_rol,estado_civil FROM usuarios"
+                querySQL = "SELECT id_usuario, cedula, nombre_usuario, apellido_usuario, id_area, id_rol,estado_civil,fecha_nacimiento FROM usuarios"
                 cursor.execute(querySQL,)
                 usuariosBD = cursor.fetchall()
         return usuariosBD
@@ -172,19 +172,6 @@ def lista_temperaturasBD():
     except Exception as e:
         print(f"Error en lista_temperatura : {e}")
         return []
-
-def lista_dispositivosBD():
-    try:
-        with connectionBD() as conexion_MySQLdb:
-            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "SELECT id_dispositivo, nombre_dispositivo, temperatura, estado, id_area, id_usuario FROM dispositivos"
-                cursor.execute(querySQL,)
-                dispositivosBD = cursor.fetchall()
-        return dispositivosBD
-    except Exception as e:
-        print(f"Error en lista_dispositivos : {e}")
-        return []
-
 
 # Eliminar usuario
 def eliminarUsuario(id):
