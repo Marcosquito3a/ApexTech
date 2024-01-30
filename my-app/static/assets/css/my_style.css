@@ -1,13 +1,112 @@
 body {
-  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: url(../img/fondologin.jpg) no-repeat center top;
+  background-size: cover;
+  font-family: sans-serif;
+  height: 160vh;
 }
 
-.gj-datepicker-bootstrap [role="right-icon"] button {
-  border: none !important;
+.login-box {
+  width: 320px;
+  height: 420px;
+  background: linear-gradient(195deg, #120057, #170028);
+  background-size: 200% 200%;
+  animation: gradientAnimation 3s ease infinite;
+  color: #fff;
+  border-radius: 5%;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  padding: 90px 30px;
+  border: 2px solid #6600ff; /* Puedes ajustar el color del borde según tus preferencias */
 }
-.bi-check-all {
-  font-size: 20px;
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
+
+
+
+.login-box .avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  position: absolute;
+  top: 20px;
+  left: calc(43% - 50px);
+}
+
+.login-box h1 {
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 22px;
+}
+
+.login-box label {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  display: block;
+}
+
+.login-box input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.login-box input[type="text"], .login-box input[type="password"] {
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: #fff;
+  font-size: 16px;
+}
+
+.login-box input[type="submit"] {
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #b80f22;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+}
+
+.login-box input[type="submit"]:hover {
+  cursor: pointer;
+  background: #ffc107;
+  color: #000;
+}
+
+.login-box a {
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 20px;
+  color: darkgrey;
+}
+
+.login-box a:hover {
+  color: #fff;
+}
+
+
+
+
+
 
 /*Inicio del loader */
 #loader-out {
