@@ -62,7 +62,7 @@ def cpanelRegisterUserBD():
         resultData = recibeInsertRegisterUser(
             cedula, name, surname, id_area,id_rol,pass_user,estado_civil,fecha_nacimiento)
         if (resultData != 0):
-            flash('la cuenta fue creada correctamente.', 'success')
+            flash('La cuenta se creó corectamente', 'success')
             return redirect(url_for('inicio'))
         else:
             return redirect(url_for('inicio'))
@@ -78,7 +78,7 @@ def actualizarPerfil(id):
         if 'conectado' in session:
             respuesta = procesar_update_perfil(request.form,id)
             if respuesta == 1:
-                flash('Los datos fuerón actualizados correctamente.', 'success')
+                flash('Los datos se actualizaron correctamente', 'success')
                 return redirect(url_for('inicio'))
             elif respuesta == 0:
                 flash(
@@ -88,16 +88,16 @@ def actualizarPerfil(id):
                 flash('Ambas claves deben se igual, por favor verifique.', 'error')
                 return redirect(url_for('perfil',id=id))
             elif respuesta == 3:
-                flash('La Clave actual es obligatoria.', 'error')
+                flash('La Clave actual es obligatoria', 'error')
                 return redirect(url_for('perfil',id=id))
             else: 
                 flash('Clave actual incorrecta', 'error')
                 return redirect(url_for('perfil',id=id))
         else:
-            flash('primero debes iniciar sesión.', 'error')
+            flash('Primero debe iniciar sesión', 'error')
             return redirect(url_for('inicio'))
     else:
-        flash('primero debes iniciar sesión.', 'error')
+        flash('Primero debe iniciar sesión', 'error')
         return redirect(url_for('inicio'))
 
 
@@ -127,17 +127,17 @@ def loginCliente():
                     session['cedula'] = account['cedula']
                     session['rol'] = account['id_rol']
 
-                    flash('la sesión fue correcta.', 'success')
+                    flash('Ha ingresado al sistema de manera exitosa', 'success')
                     return redirect(url_for('inicio'))
                 else:
                     # La cuenta no existe o el nombre de usuario/contraseña es incorrecto
-                    flash('datos incorrectos por favor revise.', 'error')
+                    flash('La cuenta no existe o el nombre de usuario/contraseña es incorrecto', 'error')
                     return render_template(f'{PATH_URL_LOGIN}/base_login.html')
             else:
-                flash('el usuario no existe, por favor verifique.', 'error')
+                flash('El usuario no existe, por favor verifique', 'error')
                 return render_template(f'{PATH_URL_LOGIN}/base_login.html')
         else:
-            flash('primero debes iniciar sesión.', 'error')
+            flash('Primero debe iniciar sesión', 'error')
             return render_template(f'{PATH_URL_LOGIN}/base_login.html')
 
 
@@ -150,8 +150,8 @@ def cerraSesion():
             session.pop('id', None)
             session.pop('name_surname', None)
             session.pop('email', None)
-            flash('tu sesión fue cerrada correctamente.', 'success')
+            flash('La sesión fue cerrada correctamente', 'success')
             return redirect(url_for('inicio'))
         else:
-            flash('recuerde debe iniciar sesión.', 'error')
+            flash('Recuerde debe iniciar sesión', 'error')
             return render_template(f'{PATH_URL_LOGIN}/base_login.html')
