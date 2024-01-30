@@ -43,7 +43,7 @@ body {
   height: 150px;
   border-radius: 50%;
   position: absolute;
-  top: 20px;
+  top: 15px;
   left: calc(43% - 50px);
 }
 
@@ -103,8 +103,13 @@ body {
   color: #fff;
 }
 
+.label-cedula {
+  font-size: 14px; /* Puedes ajustar el tamaño según tus preferencias */
+}
 
-
+.label-password {
+  font-size: 14px; /* Puedes ajustar el tamaño según tus preferencias */
+}
 
 
 

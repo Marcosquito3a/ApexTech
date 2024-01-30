@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Login Form Design One | Fazt</title>
-  <link rel="stylesheet" href="/css/master.css">
+  <link rel="stylesheet" href="/css/my_style.css">
 </head>
 <body>
 
@@ -16,7 +16,9 @@
     <h1></h1>
     <form id="formAuthentication" class="mb-3" action="{{ url_for('loginCliente') }}" method="POST">
       <div class="mb-3">
-        <label for="cedula" class="form-label">Cédula</label>
+        <label for="cedula" class="form-label label-cedula">Cédula &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👤</label>
         <input
           type="text"
           class="form-control"
@@ -28,7 +30,10 @@
 
       <div class="mb-3 form-password-toggle">
         <div class="d-flex justify-content-between">
-          <label class="form-label" for="password">Clave</label>
+          <label class="form-label label-password" for="password">Clave&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🔒</label>
         </div>
         <div class="input-group input-group-merge">
           <input
