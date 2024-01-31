@@ -45,7 +45,7 @@
       </a>
     </li>
     {%endif%} 
-    {% if dataLogin.rol == 1 %}
+    {% if dataLogin.rol == 1 or 2%}
     <li
       class="menu-item {% if request.path == '/sensor-de-humo' %} active{% endif %}"
     >
@@ -55,7 +55,7 @@
       </a>
     </li>
     {%endif%} 
-    {% if dataLogin.rol == 1 %}
+    {% if dataLogin.rol == 2 or 1%}
     <li
       class="menu-item {% if request.path == '/sensor-de-temperatura' %} active{% endif %}"
     >
