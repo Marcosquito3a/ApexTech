@@ -1,54 +1,105 @@
 <!DOCTYPE html>
-<html
-  lang="es"
-  class="light-style layout-menu-fixed"
-  dir="ltr"
-  data-theme="theme-default"
-  data-assets-path="../assets/"
-  data-template="vertical-menu-template-free">
-  <head>
-    {% include 'public/includes/head.html' %}
-    <!---->
-    {% block customCSS %} {% endblock %}
-  </head>
-  <body>
-    {% include 'public/includes/pre_loader.html' %}
-    <!---->
-    {% include 'public/includes/navbar.html' %}
-    <div class="layout-wrapper layout-content-navbar">
-      <div class="layout-container">
-        {% include 'public/includes/menu_sidebar.html'%}
-        <div class="layout-page">
-          <div class="content-wrapper">
-            <div class="container-xxl flex-grow-1 container-p-y">
-              {% include 'public/includes/messages.html' %}
-              <!---->
-              {% block body %}
+<html lang="es" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/" data-template="vertical-menu-template-free">
+<head>
+  {% include 'public/includes/head.html' %}
+  <!---->
+  {% block customCSS %} 
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-              {% if dataLogin.rol == 1 %}
-              <div>
-                <h1>BIENVENIDO ADMINISTRADOR</h1>
+    .welcome-container {
+      text-align: center;
+      padding: 20px;
+      background-color: #00011d; /* Color del cuadro */
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      color: #ffffff; /* Color del texto blanco */
+    }
+
+    .welcome-admin {
+      color: #3498db;
+    }
+
+    .welcome-user {
+      color: #2ecc71;
+    }
+
+    .company-info {
+      margin-top: 30px;
+      text-align: justify;
+    }
+  </style>
+  {% endblock %}
+</head>
+<body>
+  {% include 'public/includes/pre_loader.html' %}
+  <!---->
+  {% include 'public/includes/navbar.html' %}
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      {% include 'public/includes/menu_sidebar.html'%}
+      <div class="layout-page">
+        <div class="content-wrapper">
+          <div class="container-xxl flex-grow-1 container-p-y">
+            {% include 'public/includes/messages.html' %}
+            <!---->
+            {% block body %}
+
+            {% if dataLogin.rol == 1 %}
+            <div class="welcome-container welcome-admin">
+              <h1>🔴🔵🔴🔵BIENVENIDO ADMINISTRADOR🔵🔴🔵🔴</h1>
+              <div class="company-info">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ApexTech</p>
+                <p>En la vanguardia de la revolución tecnológica, ApexTech surge como un faro de innovación y excelencia. Somos una empresa dedicada a impulsar el potencial ilimitado de la tecnología, enfocándonos en la creación de soluciones avanzadas para satisfacer las demandas dinámicas del mundo digital.</p>
+                <p><strong>Nuestra Misión:</strong> En ApexTech, nos comprometemos a liderar el camino hacia un futuro tecnológico más brillante. Buscamos transformar ideas audaces en realidades tangibles, aprovechando la potencia de la innovación y la visión estratégica. Nuestra misión es impulsar el cambio, mejorar la eficiencia y facilitar la conectividad global a través de soluciones tecnológicas avanzadas.</p>
+                <p><strong>Infraestructura de Vanguardia:</strong> Como testimonio de nuestro compromiso con la excelencia, hemos construido un Data Center Tier Dos de última generación. Este centro de datos, diseñado con los más altos estándares de seguridad y rendimiento, es el núcleo de nuestras operaciones. Aquí, almacenamos con seguridad las aplicaciones críticas y la información vital de nuestra empresa.</p>
               </div>
-              {% endif %}
-              {% if dataLogin.rol == 2 %}
-              <div>
-                <h1>BIENVENIDO USUARIO</h1>
-              </div>
-              {% endif %}
-              <!--fin del bloque-->
-              {% endblock %}
             </div>
-
-            <div class="content-backdrop fade"></div>
+            {% endif %}
+            {% if dataLogin.rol == 2 %}
+            <div class="welcome-container welcome-user">
+              <h1>🔴🔵🔴🔵BIENVENIDO USUARIO🔵🔴🔵🔴</h1>
+              <div class="company-info">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ApexTech</p>
+                <p>En la vanguardia de la revolución tecnológica, ApexTech surge como un faro de innovación y excelencia. Somos una empresa dedicada a impulsar el potencial ilimitado de la tecnología, enfocándonos en la creación de soluciones avanzadas para satisfacer las demandas dinámicas del mundo digital.</p>
+                <p><strong>Nuestra Misión:</strong> En ApexTech, nos comprometemos a liderar el camino hacia un futuro tecnológico más brillante. Buscamos transformar ideas audaces en realidades tangibles, aprovechando la potencia de la innovación y la visión estratégica. Nuestra misión es impulsar el cambio, mejorar la eficiencia y facilitar la conectividad global a través de soluciones tecnológicas avanzadas.</p>
+                <p><strong>Infraestructura de Vanguardia:</strong> Como testimonio de nuestro compromiso con la excelencia, hemos construido un Data Center Tier Dos de última generación. Este centro de datos, diseñado con los más altos estándares de seguridad y rendimiento, es el núcleo de nuestras operaciones. Aquí, almacenamos con seguridad las aplicaciones críticas y la información vital de nuestra empresa.</p>
+              </div>
+            </div>
+            {% endif %}
+            <!--fin del bloque-->
+            {% endblock %}
           </div>
+
+          <div class="content-backdrop fade"></div>
         </div>
       </div>
-
-      <div class="layout-overlay layout-menu-toggle"></div>
     </div>
 
-    {% include 'public/includes/js.html' %}
-    <!--Custom JS-->
-    {% block customJS %} {% endblock %}
-  </body>
+    <div class="layout-overlay layout-menu-toggle"></div>
+  </div>
+
+  {% include 'public/includes/js.html' %}
+  <!--Custom JS-->
+  {% block customJS %} {% endblock %}
+</body>
 </html>
+
