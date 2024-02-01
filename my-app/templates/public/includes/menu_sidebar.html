@@ -51,7 +51,7 @@
     >
       <a href="/sensor-de-humo" class="menu-link">
         <i class="menu-icon bi bi-person-lines-fill"></i>
-        <div data-i18n="Boxicons">Humo</div>
+        <div data-i18n="Boxicons">Sensor de Humo</div>
       </a>
     </li>
     {%endif%} 
@@ -61,7 +61,27 @@
     >
       <a href="/sensor-de-temperatura" class="menu-link">
         <i class="menu-icon bi bi-person-lines-fill"></i>
-        <div data-i18n="Boxicons">Temperatura</div>
+        <div data-i18n="Boxicons">Sensor de Temperatura</div>
+      </a>
+    </li>
+    {%endif%} 
+    {% if dataLogin.rol == 2 or 1%}
+    <li
+      class="menu-item {% if request.path == '/sensor-de-fuego' %} active{% endif %}"
+    >
+      <a href="/sensor-de-fuego" class="menu-link">
+        <i class="menu-icon bi bi-person-lines-fill"></i>
+        <div data-i18n="Boxicons">Sensor de Fuego</div>
+      </a>
+    </li>
+    {%endif%} 
+    {% if dataLogin.rol == 1%}
+    <li
+      class="menu-item {% if request.path == '/tarjeta' %} active{% endif %}"
+    >
+      <a href="/tarjeta" class="menu-link">
+        <i class="menu-icon bi bi-person-lines-fill"></i>
+        <div data-i18n="Boxicons">Tarjetas RFID</div>
       </a>
     </li>
     {%endif%} 
@@ -89,7 +109,7 @@
     >
       <a href="/data-base" class="menu-link">
         <i class="menu-icon bi bi-person-lines-fill"></i>
-        <div data-i18n="Tables">Vista</div>
+        <div data-i18n="Tables">Vista del Data Center</div>
       </a>
     </li>
     {%endif%}

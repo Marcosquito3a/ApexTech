@@ -1,17 +1,17 @@
 {% extends 'public/base_cpanel.html' %}
 <!---->
-{% block title %}ApexTech 🤖 | crear cuenta{% endblock %}
+{% block title %}ApexTech 🤖 | Crear cuenta{% endblock %}
 <!---->
 {% block body %}
 
 <div class="container-xxl">
   <div class="authentication-wrapper authentication-basic container-p-y">
     <div class="authentication-inner">
-      <div class="card">
+      <div class="card" style="border-radius: 0px !important; background-color: #192a56; color: #ffffff; border: 4px solid #001f3f; box-shadow: 0 0 10px rgba(52, 152, 219, 0.8);">
         <div class="card-body">
           <div class="app-brand justify-content-center">
             <div class="col-md-12">
-              <h3 class="text-center mt-5 mb-3">REGISTRAR USUARIO</h3>
+              <h3 class="text-center mt-5 mb-3" style="color: #ffffff;">REGISTRAR USUARIO</h3>
               <hr />
             </div>
           </div>
@@ -21,7 +21,7 @@
             action="{{ url_for('cpanelRegisterUserBD') }}"
             method="POST">
             <div class="mb-3">
-              <label for="cedula" class="form-label">
+              <label for="cedula" class="form-label" style="color: #ffffff;">
                 Cedula
               </label>
               <input
@@ -33,7 +33,7 @@
             </div>
             <div class="row">
               <div class="mb-3 col-md-6">
-                <label for="name_surname" class="form-label">
+                <label for="name_surname" class="form-label" style="color: #ffffff;">
                   Nombre
                 </label>
                 <input
@@ -44,7 +44,7 @@
                   autofocus />
               </div>
               <div class="mb-3 col-md-6">
-                <label for="name_surname" class="form-label">
+                <label for="name_surname" class="form-label" style="color: #ffffff;">
                   Apellido
                 </label>
                 <input
@@ -55,7 +55,7 @@
                   autofocus />
               </div>
               <div class="mb-3 col-md-6">
-                <label for="name_surname" class="form-label">
+                <label for="name_surname" class="form-label" style="color: #ffffff;">
                   Fecha de Nacimiento
                 </label>
                 <input
@@ -66,7 +66,7 @@
                   autofocus />
               </div>
               <div class="mb-3 col-md-6">
-                <label for="name_surname" class="form-label">
+                <label for="name_surname" class="form-label" style="color: #ffffff;">
                   Estado Civil
                 </label>
                 <input
@@ -81,7 +81,7 @@
             
             <div class="row">
               <div class="mt-3 col-md-6">
-                <label for="area" class="form-label">Area</label>
+                <label for="area" class="form-label" style="color: #ffffff;">Área</label>
                 <select class="form-select" name="selectArea" {%if dataLogin.rol == 2 %} disabled {%endif%}>
                   {% for area in areas%}
                   <option value="{{area.id_area}}">{{area.nombre_area}}</option>
@@ -89,7 +89,7 @@
                 </select>
               </div>
               <div class="mt-3 col-md-6" >
-                <label for="rol" class="form-label">Rol</label>
+                <label for="rol" class="form-label" style="color: #ffffff;">Rol</label>
                 <select class="form-select" name="selectRol" {%if dataLogin.rol == 2 %} disabled {%endif%}>
                   {% for rol in roles%}
                   <option value="{{rol.id_rol}}">{{rol.nombre_rol}}</option>
@@ -100,7 +100,7 @@
 
             
             <div class="mb-3 form-password-toggle mt-3">
-              <label class="form-label" for="pass_user">Clave</label>
+              <label class="form-label" for="pass_user" style="color: #ffffff;">Clave</label>
               <div class="input-group input-group-merge">
                 <input
                   type="password"
@@ -115,7 +115,7 @@
                 </span>
               </div>
             </div>
-            <button class="btn btn-primary w-100">
+            <button class="btn btn-primary w-100" style="background-color: #007bff; color: #ffffff;">
               Crear cuenta
               <i class="bi bi-arrow-right-circle"></i>
             </button>
@@ -124,9 +124,9 @@
           <div class="text-center">
             <a
               href="{{ url_for('usuarios') }}"
-              class="d-flex align-items-center justify-content-center">
+              class="d-flex align-items-center justify-content-center" style="color: #ffffff;">
               <i class="bx bx-chevron-left scaleX-n1-rtl bx-sm"></i>
-              volver
+              Volver
             </a>
           </div>
         </div>

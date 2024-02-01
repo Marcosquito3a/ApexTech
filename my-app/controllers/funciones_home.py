@@ -173,6 +173,30 @@ def lista_temperaturasBD():
         print(f"Error en lista_temperatura : {e}")
         return []
 
+def sensor_fuegosBD():
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
+                querySQL = "SELECT id_fuego, fecha, valor FROM fuego"
+                cursor.execute(querySQL,)
+                fuegosBD = cursor.fetchall()
+        return fuegosBD
+    except Exception as e:
+        print(f"Error en sensor_fuego : {e}")
+        return []
+
+def tarjetasBD():
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
+                querySQL = "SELECT id_detection, fecha, rfid_card_id, Permiso FROM rfid_detection"
+                cursor.execute(querySQL,)
+                tarjetasBD = cursor.fetchall()
+        return tarjetasBD
+    except Exception as e:
+        print(f"Error en tarjeta : {e}")
+        return []
+
 # Eliminar usuario
 def eliminarUsuario(id):
     try:

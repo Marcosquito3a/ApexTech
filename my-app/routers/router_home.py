@@ -38,6 +38,22 @@ def temperaturas():
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
+    
+@app.route('/sensor-de-fuego', methods=['GET'])
+def fuegos():
+    if 'conectado' in session:
+        return render_template('public/usuarios/sensor_fuego.html', fuegos=sensor_fuegosBD(), dataLogin=dataLoginSesion())
+    else:
+        flash('primero debes iniciar sesión.', 'error')
+        return redirect(url_for('inicio'))
+    
+@app.route('/tarjeta', methods=['GET'])
+def tarjetas():
+    if 'conectado' in session:
+        return render_template('public/usuarios/tarjeta.html', tarjetas=tarjetasBD(), dataLogin=dataLoginSesion())
+    else:
+        flash('primero debes iniciar sesión.', 'error')
+        return redirect(url_for('inicio'))
 
 @app.route("/lista-de-usuarios", methods=['GET'])
 def usuarios():

@@ -1,33 +1,33 @@
 {% extends 'public/base_cpanel.html' %}
-<!-- Cambiando el título -->
-{% block title %}ApexTech 🤖 | Sensor de Temperatura{% endblock %}
-<!-- Inicio del bloque -->
+<!-- Cambiando el title -->
+{% block title %}ApexTech 🤖 | Sensor de Fuego{% endblock %}
+<!-- Inicio del block -->
 {% block body %}
 
 <div class="card" style="border-radius: 10px !important; background-color: #192a56; color: #ffffff; border: 4px solid #001f3f; box-shadow: 0 0 10px rgba(52, 152, 219, 0.8);">
   <div class="row justify-content-center mb-2">
     <div class="col-md-12 mb-4">
-      <h3 class="text-center mt-5 mb-3" style="color: #ffffff;">DATOS DEL SENSOR DE TEMPERATURA</h3>
+      <h3 class="text-center mt-5 mb-3" style="color: #ffffff;">DATOS DEL SENSOR DE FUEGO</h3>
       <hr />
     </div>
 
     <div class="row justify-content-center mb-2">
       <div class="table-responsive text-nowrap table-hover">
-        <table table-hover id="tbl_temperatura" class="table table-striped table-bordered" cellspacing="0" width="100%" style="color: #ffffff;">
+        <table table-hover id="tbl_fuego" class="table table-striped table-bordered" cellspacing="0" width="100%" style="color: #ffffff;">
           <thead>
             <tr style="background-color: #001f3f;">
               <th>ID</th>
               <th>Fecha</th>
-              <th>Temperatura</th>
+              <th>Valor</th>
             </tr>
           </thead>
           <tbody>
-            {% for temperatura in temperaturas %}
-            <tr id="{{ temperatura.id_temperatura }}">
-              <td>{{ temperatura.id_temperatura }}</td>
-              <td>{{ temperatura.fecha }}</td>
+            {% for fuego in fuegos %}
+            <tr id="{{ fuego.id_fuego }}">
+              <td>{{ fuego.id_fuego }}</td>
+              <td>{{ fuego.fecha }}</td>
               
-              <td style="font-size: {% if temperatura.temperatura >= 25 %}20px; color: red{% else %}inherit{% endif %}">{{ temperatura.temperatura }}</td>
+              <td style="font-size: {% if fuego.valor == 0 %}20px; color: red{% else %}inherit{% endif %}">{{ fuego.valor }}</td>
             </tr>
             {% endfor %}
           </tbody>

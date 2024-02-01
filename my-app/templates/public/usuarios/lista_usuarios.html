@@ -1,12 +1,12 @@
 {% extends 'public/base_cpanel.html' %}
-<!--Cambiando el title-->
+<!-- Cambiando el title -->
 {% block title %}Crud - Python 🐍 | Lista de Usuarios{% endblock %}
 <!---->
 {% block body %} {% if (resp_usuariosBD) %}
 
-<div class="card content_consignaciones" style="border-radius: 0px !important">
+<div class="card content_consignaciones" style="border-radius: 0px !important; background-color: #192a56; color: #ffffff; border: 4px solid #001f3f; box-shadow: 0 0 10px rgba(52, 152, 219, 0.8);">
   <section id="respuestaFiltroMes">
-    <h2 class="text-center mt-5 mb-5">
+    <h2 class="text-center mt-5 mb-5" style="color: #ffffff;">
       Lista de Usuarios
       <hr />
     </h2>
@@ -18,9 +18,9 @@
     </p>
 
     <div class="table-responsive text-nowrap">
-      <table class="table table-hover">
+      <table class="table table-hover" style="color: #ffffff;">
         <thead>
-          <tr style="background-color: #ddd">
+          <tr style="background-color: #001f3f;">
             <th>Cédula</th>
             <th>Nombre</th>
             <th>Fecha de Nacimiento</th>
@@ -54,7 +54,7 @@
             <td>
               <a
                   href="/mi-perfil/{{usuario.id_usuario}}"
-                  class="btn btn-success btn-sm"
+                  class="btn btn-outline-success btn-sm"
                   tooltip="Actualizar Registro">
                   <i class="bi bi-arrow-clockwise"></i>
                   Actualizar
@@ -62,7 +62,7 @@
                 <a
                   style="color: white;"
                   onclick="eliminarUsuario('{{ usuario.id_usuario }}');"
-                  class="btn btn-danger btn-sm"
+                  class="btn btn-outline-danger btn-sm"
                   data-bs-toggle="tooltip"
                   data-bs-offset="0,4"
                   data-bs-placement="top"
@@ -83,7 +83,7 @@
 <div class="container mt-3 mb-3" style="width: 100% !important">
   <div class="row justify-content-md-center mb-2">
     <div class="col-12">
-      <h2 class="text-center">No hay usuarios 😭</h2>
+      <h2 class="text-center" style="color: #ffffff;">No hay usuarios 😭</h2>
     </div>
   </div>
 </div>
